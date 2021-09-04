@@ -10,6 +10,7 @@ object Libraries {
         const val kotlin = "1.5.21"
         const val coroutines = "1.4.2"
 
+        const val annotation = "1.2.0"
         const val core = "1.5.0"
         const val appCompat = "1.3.1"
         const val lifecycle = "2.3.1"
@@ -35,6 +36,7 @@ object Libraries {
      * AndroidX libraries
      */
     object X {
+        const val annotation = "androidx.annotation:annotation:${v.annotation}"
         const val core = "androidx.core:core:${v.core}"
         const val coreKtx = "androidx.core:core-ktx:${v.core}"
         const val appCompat = "androidx.appcompat:appcompat:${v.appCompat}"
