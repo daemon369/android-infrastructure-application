@@ -1,0 +1,41 @@
+//plugins {
+//    id 'com.android.library'
+//    id 'kotlin-android'
+//}
+
+ext {
+    artifactId = 'android-infrastructure-application'
+    artifactVersion = '0.1.0'
+
+    pom = [
+            name       : artifactId,
+            description: "Android infrastructure application",
+            url        : "https://github.com/daemon369/android-infrastructure-application",
+
+            scm        : [
+                    connection         : "scm:git:git://github.com/daemon369/android-infrastructure-application.git",
+                    developerConnection: "scm:git:ssh://github.com/daemon369/android-infrastructure-application.git",
+                    url                : "https://github.com/daemon369/android-infrastructure-application/tree/main",
+            ],
+    ]
+}
+
+import me.daemon.plugin.Libraries
+
+apply from: "$rootDir/gradle/library_base.gradle"
+apply from: "$rootDir/gradle/maven-publish.gradle"
+
+android {
+    defaultConfig {
+        versionCode 1
+        versionName "1.0"
+    }
+    buildFeatures {
+        buildConfig = false
+    }
+}
+
+dependencies {
+    compileOnly Libraries.X.core
+    implementation 'io.github.daemon369:annotation:0.1.0'
+}
