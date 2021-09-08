@@ -1,11 +1,12 @@
+@file:Suppress("unused")
+
 package me.daemon.infrastructure.application
 
 import android.app.Application
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
-import android.os.Build
-import androidx.annotation.RequiresApi
+import androidx.core.content.pm.PackageInfoCompat
 import me.daemon.annotation.RequireInfrastructureApp
 
 /**
@@ -42,12 +43,15 @@ val Context.packageInfo: PackageInfo
     get() = this.packageManager.getPackageInfo(this.packageName, 0)
 
 @Suppress("DEPRECATION")
+@Deprecated(
+    "use longVersionCode instead",
+    ReplaceWith("longVersionCode")
+)
 val Context.versionCode: Int
     get() = this.packageInfo.versionCode
 
 val Context.longVersionCode: Long
-    @RequiresApi(Build.VERSION_CODES.P)
-    get() = this.packageInfo.longVersionCode
+    get() = PackageInfoCompat.getLongVersionCode(this.packageInfo)
 
 val Context.versionName: String
     get() = this.packageInfo.versionName
@@ -61,22 +65,22 @@ val packageInfo: PackageInfo
     get() = application.packageInfo
 
 @RequireInfrastructureApp
-@Suppress("unused")
+@Deprecated(
+    "use longVersionCode instead",
+    ReplaceWith("longVersionCode")
+)
+@Suppress("DEPRECATION")
 val versionCode: Int
     get() = application.versionCode
 
-@Suppress("unused")
 @RequireInfrastructureApp
 val longVersionCode: Long
-    @RequiresApi(Build.VERSION_CODES.P)
-    get() = packageInfo.longVersionCode
+    get() = PackageInfoCompat.getLongVersionCode(packageInfo)
 
-@Suppress("unused")
 @RequireInfrastructureApp
 val versionName: String
     get() = packageInfo.versionName
 
 @RequireInfrastructureApp
-@Suppress("unused")
 val packageName: String
     get() = application.packageName
