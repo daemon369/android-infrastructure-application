@@ -52,8 +52,6 @@ object Libraries {
      */
     object K {
         const val bom = "org.jetbrains.kotlin:kotlin-bom"
-        const val std = "org.jetbrains.kotlin:kotlin-stdlib:${v.kotlin}"
-        const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${v.kotlin}"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${v.coroutines}"
     }
 

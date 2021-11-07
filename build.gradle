@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath Libraries.A.gradle
-        classpath Libraries.K.plugin
+        classpath libs.kotlin.plugin
     }
 }
 
