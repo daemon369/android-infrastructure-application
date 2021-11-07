@@ -1,5 +1,5 @@
-include ':demo'
-include ':android-infrastructure-application'
+include(":demo")
+include(":android-infrastructure-application")
 
 enableFeaturePreview("VERSION_CATALOGS")
 
