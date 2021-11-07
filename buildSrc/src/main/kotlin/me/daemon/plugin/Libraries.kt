@@ -37,7 +37,6 @@ object Libraries {
      */
     object X {
         const val annotation = "androidx.annotation:annotation:${v.annotation}"
-        const val core = "androidx.core:core:${v.core}"
         const val coreKtx = "androidx.core:core-ktx:${v.core}"
         const val appCompat = "androidx.appcompat:appcompat:${v.appCompat}"
         const val lifecycleJava8 = "androidx.lifecycle:lifecycle-common-java8:${v.lifecycle}"
