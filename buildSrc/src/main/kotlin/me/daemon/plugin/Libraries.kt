@@ -19,17 +19,9 @@ object Libraries {
         const val navigation = "2.3.5"
         const val constraintLayout = "2.1.0"
 
-        const val gradlePlugin = "7.0.2"
         const val junit = "4.13.2"
         const val xJunit = "1.1.2"
         const val espresso = "3.3.0"
-    }
-
-    /**
-     * Android libraries
-     */
-    object A {
-        const val gradle = "com.android.tools.build:gradle:${v.gradlePlugin}"
     }
 
     /**
