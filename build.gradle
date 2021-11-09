@@ -1,12 +1,10 @@
-import me.daemon.plugin.Libraries
-
 buildscript {
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath Libraries.A.gradle
+        classpath libs.gradle
         classpath libs.kotlin.plugin
     }
 }
