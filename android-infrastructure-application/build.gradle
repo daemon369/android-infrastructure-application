@@ -29,6 +29,6 @@ android {
 }
 
 dependencies {
-    compileOnly libs.x.core.core
+    compileOnly libs.x.core
     implementation libs.daemon.annotation
 }

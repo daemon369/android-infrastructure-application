@@ -29,7 +29,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation platform(Libraries.K.bom)
-    implementation libs.kotlin.std
+    implementation libs.kotlin
 
     testImplementation Libraries.T.junit
     androidTestImplementation Libraries.T.xJunit
