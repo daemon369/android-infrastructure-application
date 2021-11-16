@@ -4,8 +4,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath libs.gradle
-        classpath libs.kotlin.plugin
+        classpath(libs.gradle)
+        classpath(libs.kotlin.plugin)
     }
 }
 
@@ -16,8 +16,8 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.create<Delete>("clean") {
+    delete(rootProject.buildDir)
 }
 
-apply from: "$rootDir/gradle/publish-root.gradle"
+apply(from = "$rootDir/gradle/publish-root.gradle")
