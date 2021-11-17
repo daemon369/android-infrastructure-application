@@ -23,8 +23,8 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.5.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+    implementation(libs.x.core.ktx)
+    implementation(libs.x.appcompat)
+    implementation(libs.x.constraintlayout)
     implementation(project(":android-infrastructure-application"))
 }
