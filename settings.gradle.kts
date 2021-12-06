@@ -1,5 +1,3 @@
-@file:Suppress("UnstableApiUsage")
-
 include(":demo")
 include(":android-infrastructure-application")
 
@@ -13,7 +11,7 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         create("libs") {
-            from("io.github.daemon369:android-version-catalog:0.0.6")
+            from("io.github.daemon369:android-version-catalog:0.0.7")
         }
     }
 }
