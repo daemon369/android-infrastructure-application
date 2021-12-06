@@ -6,6 +6,8 @@ import android.app.Application
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.content.pm.PackageInfoCompat
 import me.daemon.annotation.RequireInfrastructureApp
 
@@ -56,6 +58,18 @@ val Context.longVersionCode: Long
 val Context.versionName: String
     get() = this.packageInfo.versionName
 
+val Context.minSdkVersion: Int
+    @RequiresApi(Build.VERSION_CODES.N)
+    get() = this.packageInfo.applicationInfo.minSdkVersion
+
+val Context.compileSdkVersion: Int
+    @RequiresApi(Build.VERSION_CODES.S)
+    get() = this.packageInfo.applicationInfo.compileSdkVersion
+
+val Context.targetSdkVersion: Int
+    get() = this.packageInfo.applicationInfo.targetSdkVersion
+
+
 @RequireInfrastructureApp
 val debuggable: Boolean
     get() = application.debuggable
@@ -84,3 +98,17 @@ val versionName: String
 @RequireInfrastructureApp
 val packageName: String
     get() = application.packageName
+
+@RequireInfrastructureApp
+val minSdkVersion: Int
+    @RequiresApi(Build.VERSION_CODES.N)
+    get() = application.minSdkVersion
+
+@RequireInfrastructureApp
+val compileSdkVersion: Int
+    @RequiresApi(Build.VERSION_CODES.S)
+    get() = application.compileSdkVersion
+
+@RequireInfrastructureApp
+val targetSdkVersion: Int
+    get() = application.targetSdkVersion
