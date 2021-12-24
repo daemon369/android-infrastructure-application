@@ -44,14 +44,6 @@ val Context.debuggable: Boolean
 val Context.packageInfo: PackageInfo
     get() = this.packageManager.getPackageInfo(this.packageName, 0)
 
-@Suppress("DEPRECATION")
-@Deprecated(
-    "use longVersionCode instead",
-    ReplaceWith("longVersionCode")
-)
-val Context.versionCode: Int
-    get() = this.packageInfo.versionCode
-
 val Context.longVersionCode: Long
     get() = PackageInfoCompat.getLongVersionCode(this.packageInfo)
 
@@ -77,15 +69,6 @@ val debuggable: Boolean
 @RequireInfrastructureApp
 val packageInfo: PackageInfo
     get() = application.packageInfo
-
-@RequireInfrastructureApp
-@Deprecated(
-    "use longVersionCode instead",
-    ReplaceWith("longVersionCode")
-)
-@Suppress("DEPRECATION")
-val versionCode: Int
-    get() = application.versionCode
 
 @RequireInfrastructureApp
 val longVersionCode: Long
