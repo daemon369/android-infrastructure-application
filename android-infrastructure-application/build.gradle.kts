@@ -25,10 +25,6 @@ apply(from = "$rootDir/gradle/library_base.gradle")
 apply(from = "$rootDir/gradle/maven-publish.gradle")
 
 android {
-//    defaultConfig {
-//        versionCode = 1
-//        versionName = "1.0"
-//    }
     buildFeatures {
         buildConfig = false
     }

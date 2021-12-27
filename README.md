@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation "io.github.daemon369:android-infrastructure-application:0.1.1"
+    implementation "io.github.daemon369:android-infrastructure-application:1.0.0"
 }
 ```
 
