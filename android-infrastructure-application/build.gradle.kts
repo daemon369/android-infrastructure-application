@@ -4,7 +4,7 @@ plugins {
 
 ext {
     set("artifactId", "android-infrastructure-application")
-    set("artifactVersion", "1.0.0")
+    set("artifactVersion", "1.1.0")
 
     set(
         "pom",

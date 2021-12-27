@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.0] - 2021-12-27
+
+### Changed
+
+- 设置`InfrastructureApp`为默认`Application`
+
 ## [1.0.0] - 2021-12-24
 
 ### Added
