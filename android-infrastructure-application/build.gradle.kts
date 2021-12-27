@@ -9,7 +9,7 @@ ext {
     set(
         "pom",
         mapOf(
-            "name" to "artifactId",
+            "name" to get("artifactId"),
             "description" to "Android infrastructure application",
             "url" to "https://github.com/daemon369/android-infrastructure-application",
             "scm" to mapOf(
