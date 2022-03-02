@@ -1,9 +1,5 @@
-@file:Suppress("UnstableApiUsage")
-
 include(":demo")
 include(":android-infrastructure-application")
-
-enableFeaturePreview("VERSION_CATALOGS")
 
 dependencyResolutionManagement {
     repositories {
@@ -13,7 +9,7 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         create("libs") {
-            from("io.github.daemon369:android-version-catalog:0.0.8")
+            from("io.github.daemon369:android-version-catalog:1.0.0")
         }
     }
 }
