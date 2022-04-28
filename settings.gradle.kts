@@ -9,7 +9,7 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         create("libs") {
-            from("io.github.daemon369:android-version-catalog:1.0.0")
+            from("io.github.daemon369:android-version-catalog:1.2.0")
         }
     }
 }
