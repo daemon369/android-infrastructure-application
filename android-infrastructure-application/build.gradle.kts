@@ -8,6 +8,19 @@ plugins {
     id("signing")
 }
 
+data class Pom(
+    val name: String,
+    val description: String,
+    val url: String,
+    val scm: Scm,
+) {
+    data class Scm(
+        val connection: String,
+        val developerConnection: String,
+        val url: String,
+    )
+}
+
 ext {
     set("artifactId", "android-infrastructure-application")
     set("artifactVersion", "1.2.0")
