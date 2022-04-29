@@ -57,16 +57,16 @@ afterEvaluate {
                     url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
 
                     credentials {
-                        username = rootProject.ext["ossrhUsername"]!!.toString()
-                        password = rootProject.ext["ossrhPassword"]!!.toString()
+                        username = extra["ossrhUsername"]!!.toString()
+                        password = extra["ossrhPassword"]!!.toString()
                     }
                 }
             }
 
             create<MavenPublication>("release") {
                 groupId = Configuration.groupId
-                artifactId = project.ext["artifactId"]!!.toString()
-                version = project.ext["artifactVersion"]!!.toString()
+                artifactId = extra["artifactId"]!!.toString()
+                version = extra["artifactVersion"]!!.toString()
                 if (plugins.findPlugin("com.android.library") != null) {
                     from(components["release"])
                 } else {
@@ -74,9 +74,9 @@ afterEvaluate {
                 }
 
                 pom {
-                    name.set((project.ext["pom"] as Map<String, *>)["name"]!!.toString())
-                    description.set((project.ext["pom"] as Map<String, *>)["description"]!!.toString())
-                    url.set((project.ext["pom"] as Map<String, *>)["url"]!!.toString())
+                    name.set((extra["pom"] as Map<String, *>)["name"]!!.toString())
+                    description.set((extra["pom"] as Map<String, *>)["description"]!!.toString())
+                    url.set((extra["pom"] as Map<String, *>)["url"]!!.toString())
                     licenses {
                         license {
                             name.set("The Apache Software License, Version 2.0")
@@ -91,9 +91,9 @@ afterEvaluate {
                         }
                     }
                     scm {
-                        connection.set(((project.ext["pom"] as Map<String, *>)["scm"] as Map<String, String>)["connection"])
-                        developerConnection.set(((project.ext["pom"] as Map<String, *>)["scm"] as Map<String, String>)["developerConnection"])
-                        url.set(((project.ext["pom"] as Map<String, *>)["scm"] as Map<String, String>)["url"])
+                        connection.set(((extra["pom"] as Map<String, *>)["scm"] as Map<String, String>)["connection"])
+                        developerConnection.set(((extra["pom"] as Map<String, *>)["scm"] as Map<String, String>)["developerConnection"])
+                        url.set(((extra["pom"] as Map<String, *>)["scm"] as Map<String, String>)["url"])
                     }
                 }
             }
@@ -101,10 +101,6 @@ afterEvaluate {
     }
 
 }
-
-ext["signing.keyId"] = rootProject.ext["signing.keyId"]
-ext["signing.password"] = rootProject.ext["signing.password"]
-ext["signing.secretKeyRingFile"] = rootProject.ext["signing.secretKeyRingFile"]
 
 signing {
     sign(publishing.publications)
