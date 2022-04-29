@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.0] - 2022-04-29
+
+### Changed
+
+- 更新`android-version-catalog`到`1.2.0`，使用最新的依赖库及`Kotlin 1.6.21`
+
 ## [1.1.0] - 2021-12-27
 
 ### Changed
