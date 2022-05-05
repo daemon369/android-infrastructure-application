@@ -1,5 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
+includeBuild("compositeBuild")
 include(":demo")
 include(":android-infrastructure-application")
 
