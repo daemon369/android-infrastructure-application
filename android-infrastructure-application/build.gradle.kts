@@ -1,48 +1,58 @@
 @file:Suppress("UNCHECKED_CAST")
 
-import me.daemon.plugin.Configuration
+import me.daemon.gradle.PublishInfo
+import me.daemon.gradle.PublishInfo.Pom
+import me.daemon.gradle.PublishInfo.Pom.Scm
 
 plugins {
     id("com.android.library")
+    id("kotlin-android")
     id("maven-publish")
     id("signing")
+    id("me.daemon.gradle")
 }
 
-data class Pom(
-    val name: String,
-    val description: String,
-    val url: String,
-    val scm: Scm,
-) {
-    data class Scm(
-        val connection: String,
-        val developerConnection: String,
-        val url: String,
-    )
-}
+val artifactGroupId: String by project
+val ossrhUsername: String by project.extra
+val ossrhPassword: String by project.extra
 
-ext {
-    set("artifactId", "android-infrastructure-application")
-    set("artifactVersion", "1.2.0")
-
-    set(
-        "pom",
-        mapOf(
-            "name" to get("artifactId"),
-            "description" to "Android infrastructure application",
-            "url" to "https://github.com/daemon369/android-infrastructure-application",
-            "scm" to mapOf(
-                "connection" to "scm:git:git://github.com/daemon369/android-infrastructure-application.git",
-                "developerConnection" to "scm:git:ssh://github.com/daemon369/android-infrastructure-application.git",
-                "url" to "https://github.com/daemon369/android-infrastructure-application/tree/main",
-            )
+val publishInfo = PublishInfo(
+    artifactId = "android-infrastructure-application",
+    artifactVersion = "1.2.0",
+    pom = Pom(
+        name = "android-infrastructure-application",
+        description = "Android infrastructure application",
+        url = "https://github.com/daemon369/android-infrastructure-application",
+        scm = Scm(
+            connection = "scm:git:git://github.com/daemon369/android-infrastructure-application.git",
+            developerConnection = "scm:git:ssh://github.com/daemon369/android-infrastructure-application.git",
+            url = "https://github.com/daemon369/android-infrastructure-application/tree/main",
         )
     )
-}
+)
 
-apply(from = "$rootDir/gradle/library_base.gradle")
+apply(from = "$rootDir/gradle/base.gradle")
 
 android {
+    defaultConfig {
+        consumerProguardFiles("consumer-rules.pro")
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+
+    compileOptions {
+        kotlinOptions.freeCompilerArgs =
+            listOf("-module-name", "${artifactGroupId}.${publishInfo.artifactId}")
+    }
+
     buildFeatures {
         buildConfig = false
     }
@@ -75,16 +85,16 @@ afterEvaluate {
                     url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
 
                     credentials {
-                        username = project.extra["ossrhUsername"]!!.toString()
-                        password = project.extra["ossrhPassword"]!!.toString()
+                        username = ossrhUsername
+                        password = ossrhPassword
                     }
                 }
             }
 
             create<MavenPublication>("release") {
-                groupId = Configuration.groupId
-                artifactId = extra["artifactId"]!!.toString()
-                version = extra["artifactVersion"]!!.toString()
+                groupId = artifactGroupId
+                artifactId = publishInfo.artifactId
+                version = publishInfo.artifactVersion
                 if (plugins.findPlugin("com.android.library") != null) {
                     from(components["release"])
                 } else {
@@ -92,9 +102,9 @@ afterEvaluate {
                 }
 
                 pom {
-                    name.set((extra["pom"] as Map<String, *>)["name"]!!.toString())
-                    description.set((extra["pom"] as Map<String, *>)["description"]!!.toString())
-                    url.set((extra["pom"] as Map<String, *>)["url"]!!.toString())
+                    name.set(publishInfo.pom.name)
+                    description.set(publishInfo.pom.description)
+                    url.set(publishInfo.pom.url)
                     licenses {
                         license {
                             name.set("The Apache Software License, Version 2.0")
@@ -109,9 +119,9 @@ afterEvaluate {
                         }
                     }
                     scm {
-                        connection.set(((extra["pom"] as Map<String, *>)["scm"] as Map<String, String>)["connection"])
-                        developerConnection.set(((extra["pom"] as Map<String, *>)["scm"] as Map<String, String>)["developerConnection"])
-                        url.set(((extra["pom"] as Map<String, *>)["scm"] as Map<String, String>)["url"])
+                        connection.set(publishInfo.pom.scm.connection)
+                        developerConnection.set(publishInfo.pom.scm.developerConnection)
+                        url.set(publishInfo.pom.scm.url)
                     }
                 }
             }
