@@ -18,7 +18,7 @@ val ossrhPassword: String by project.extra
 
 val publishInfo = PublishInfo(
     artifactId = "android-infrastructure-application",
-    artifactVersion = "1.2.0",
+    artifactVersion = "1.3.0",
     pom = Pom(
         name = "android-infrastructure-application",
         description = "Android infrastructure application",
@@ -72,7 +72,8 @@ android {
 
 dependencies {
     compileOnly(libs.x.core)
-    implementation(libs.daemon.annotation)
+//    implementation(libs.daemon.annotation)
+    implementation("io.github.daemon369:annotation:1.0.0")
 }
 
 

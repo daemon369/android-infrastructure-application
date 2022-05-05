@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.0] - 2022-05-05
+
+### Changed
+
+- `io.github.daemon369:annotation`升级为`1.0.0`
+
 ## [1.2.0] - 2022-04-29
 
 ### Changed
